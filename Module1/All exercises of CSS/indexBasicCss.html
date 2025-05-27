@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Community Event Portal</title>
+  <link rel="stylesheet1" href="style.css">
+  <link rel="stylesheet2" href="modern_Layout_using_Flexbox_and_Grid.css">
+  <link rel="stylesheet3" href="transitions_and_Hover_effects.css">
+  <link rel="stylesheet4" href="Responsive_Design_with_Media_Queries.css">
+  <link rel="stylesheet5" href="Animations.css">
+
+
+  <style>
+    /* Internal CSS for #welcomeBanner */
+    #welcomeBanner {
+      background-color: lightblue;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .highlight {
+      font-weight: bold;
+      background-color: yellow;
+    }
+
+    .gallery-img {
+      border: 2px solid #444;
+      width: 100px;
+      height: 100px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    output {
+      display: block;
+      margin-top: 10px;
+      color: green;
+    }
+  </style>
+</head>
+
+
+
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#home">Home</a> |
+    <a href="#events">Events</a> |
+    <a href="#contact">Contact</a> |
+    <a href="help.html" target="_blank">Help</a>
+  </nav>
+
+  <!-- Welcome Message -->
+  <div id="welcomeBanner">
+    <h1>Welcome to the Community Portal!</h1>
+    <p><span style="color: red; font-weight: bold;">Special Offer:</span> Free entry for the first 100 visitors!</p>
+    <p class="highlight">Stay informed about upcoming local events.</p>
+  </div>
+
+  <!-- Main -->
+  <main>
+    <!-- Home Section -->
+    <section id="home">
+      <h2>About the Portal</h2>
+      <p>This portal helps residents register for events, access services, and stay connected.</p>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events">
+      <h2>Community Event Gallery</h2>
+      <table>
+        <caption>Past Event Highlights</caption>
+        <tr>
+          <td><img src="img1.jpg" class="gallery-img" alt="Music Fest" title="Music Fest"></td>
+          <td><img src="img2.jpg" class="gallery-img" alt="Art Workshop" title="Art Workshop"></td>
+          <td><img src="img3.jpg" class="gallery-img" alt="Clean-Up Drive" title="Clean-Up Drive"></td>
+        </tr>
+        <tr>
+          <td><img src="img4.jpg" class="gallery-img" alt="Yoga Session" title="Yoga Session"></td>
+          <td><img src="img5.jpg" class="gallery-img" alt="Book Fair" title="Book Fair"></td>
+          <td><img src="img6.jpg" class="gallery-img" alt="Tech Expo" title="Tech Expo"></td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Registration Form -->
+    <section>
+      <h2>Register for an Event</h2>
+      <form onsubmit="showConfirmation(event)">
+        <label>Name: <input type="text" name="name" placeholder="Your name" required autofocus></label><br><br>
+        <label>Email: <input type="email" name="email" placeholder="you@example.com" required></label><br><br>
+        <label>Phone: <input type="text" id="phone" onblur="validatePhone(this)"></label><br><br>
+        <label>Date: <input type="date" name="eventDate" required></label><br><br>
+        <label>Event Type: 
+          <select id="eventType" onchange="displayFee(this.value)">
+            <option value="">--Select--</option>
+            <option value="Music">Music</option>
+            <option value="Art">Art</option>
+            <option value="Tech">Tech</option>
+          </select>
+        </label><br><br>
+        <label>Message: <textarea id="feedback" rows="4" cols="30" onkeyup="countChars()"></textarea></label><br>
+        <span id="charCount">0 characters</span><br><br>
+        <button type="submit" onclick="return confirm('Are you sure?')">Submit</button>
+        <output id="formOutput"></output>
+      </form>
+    </section>
+
+    <!-- Video Section -->
+    <section>
+      <h2>Event Promo</h2>
+      <video id="promoVideo" width="320" controls oncanplay="videoReady()">
+        <source src="event_promo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p id="videoStatus"></p>
+    </section>
+
+    <!-- Geolocation -->
+    <section>
+      <h2>Find Nearby Events</h2>
+      <button onclick="getLocation()">Find Nearby Events</button>
+      <p id="geoOutput"></p>
+    </section>
+
+    <!-- Preferences -->
+    <section>
+      <h2>Your Preferences</h2>
+      <button onclick="savePreference()">Save Preferred Event Type</button>
+      <button onclick="clearPreferences()">Clear Preferences</button>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: info@communityevents.org</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Local Community Council</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Validate phone number (10 digits)
+    function validatePhone(input) {
+      const regex = /^\d{10}$/;
+      if (!regex.test(input.value)) {
+        alert("Please enter a valid 10-digit phone number.");
+        input.focus();
+      }
+    }
+
+    // Display event fee
+    function displayFee(value) {
+      const fees = { Music: 100, Art: 80, Tech: 120 };
+      if (value) alert("Fee for " + value + " event is ₹" + fees[value]);
+      localStorage.setItem("preferredEvent", value);
+    }
+
+    // Show confirmation on submit
+    function showConfirmation(event) {
+      event.preventDefault();
+      document.getElementById("formOutput").value = "Registration submitted successfully!";
+    }
+
+    // Character counter
+    function countChars() {
+      const text = document.getElementById("feedback").value;
+      document.getElementById("charCount").innerText = text.length + " characters";
+    }
+
+    // Video ready
+    function videoReady() {
+      document.getElementById("videoStatus").innerText = "Video ready to play";
+    }
+
+    // Geolocation
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            document.getElementById("geoOutput").innerText = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+          },
+          (error) => {
+            document.getElementById("geoOutput").innerText = "Location access denied or unavailable.";
+          },
+          { enableHighAccuracy: true, timeout: 5000 }
+        );
+      } else {
+        document.getElementById("geoOutput").innerText = "Geolocation not supported by your browser.";
+      }
+    }
+
+    // Save preferences
+    function savePreference() {
+      const selected = document.getElementById("eventType").value;
+      if (selected) {
+        localStorage.setItem("preferredEvent", selected);
+        sessionStorage.setItem("sessionEvent", selected);
+        alert("Preferences saved.");
+      }
+    }
+
+    // Clear preferences
+    function clearPreferences() {
+      localStorage.clear();
+      sessionStorage.clear();
+      alert("Preferences cleared.");
+    }
+
+    // Preload saved event type
+    window.onload = function () {
+      const saved = localStorage.getItem("preferredEvent");
+      if (saved) {
+        document.getElementById("eventType").value = saved;
+      }
+    };
+
+    // Warn before unload
+    window.onbeforeunload = function () {
+      return "You have unsaved changes. Are you sure you want to leave?";
+    };
+  </script>
+
+</body>
+</html>

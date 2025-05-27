@@ -1,0 +1,26 @@
+/* Flexbox for Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background-color: #004080;
+    padding: 10px;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Grid for Gallery */
+  #events table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  #events img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  

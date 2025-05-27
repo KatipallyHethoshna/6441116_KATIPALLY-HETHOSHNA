@@ -1,0 +1,12 @@
+nav a:hover {
+    color: yellow;
+    transition: color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0077cc;
+    color: white;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+  }
+  

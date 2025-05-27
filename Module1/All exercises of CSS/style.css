@@ -1,0 +1,27 @@
+/* Internal CSS for #welcomeBanner */
+    #welcomeBanner {
+      background-color: lightblue;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .highlight {
+      font-weight: bold;
+      background-color: yellow;
+    }
+
+    .gallery-img {
+      border: 2px solid #444;
+      width: 100px;
+      height: 100px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    output {
+      display: block;
+      margin-top: 10px;
+      color: green;
+    }

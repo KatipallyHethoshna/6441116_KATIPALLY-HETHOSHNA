@@ -1,0 +1,18 @@
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #004080;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}

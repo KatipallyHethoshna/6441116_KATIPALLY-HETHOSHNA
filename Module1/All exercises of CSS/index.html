@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Community Event Portal</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="modernLayoutusingFlexboxandGrid.css">
+  <link rel="stylesheet" href="transitionsAndHoverEffects.css">
+  <link rel="stylesheet" href="responsiveDesignwithMediaQueries.css">
+  <link rel="stylesheet" href="styledFormElements.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Animations.css">
+  <link rel="stylesheet" href="customFontsAndIcons.css">
+  <link rel="stylesheet" href="darkMode.css">
+   
+
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#home">Home</a> |
+    <a href="#events">Events</a> |
+    <a href="#contact">Contact</a> |
+    <a href="help.html" target="_blank">Help</a>
+  </nav>
+
+  <!-- Welcome Message -->
+  <div id="welcomeBanner">
+    <h1>Welcome to the Community Portal!</h1>
+    <p><span class="special-offer">Special Offer:</span> Free entry for the first 100 visitors!</p>
+    <p class="highlight">Stay informed about upcoming local events.</p>
+  </div>
+
+  <!-- Main -->
+  <main>
+    <!-- Home Section -->
+    <section id="home">
+      <h2>About the Portal</h2>
+      <p>This portal helps residents register for events, access services, and stay connected.</p>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events">
+      <h2>Community Event Gallery</h2>
+      <table>
+        <caption>Past Event Highlights</caption>
+        <tr>
+          <td><img src="img1.jpg" class="gallery-img" alt="Music Fest" title="Music Fest"></td>
+          <td><img src="img2.jpg" class="gallery-img" alt="Art Workshop" title="Art Workshop"></td>
+          <td><img src="img3.jpg" class="gallery-img" alt="Clean-Up Drive" title="Clean-Up Drive"></td>
+        </tr>
+        <tr>
+          <td><img src="img4.jpg" class="gallery-img" alt="Yoga Session" title="Yoga Session"></td>
+          <td><img src="img5.jpg" class="gallery-img" alt="Book Fair" title="Book Fair"></td>
+          <td><img src="img6.jpg" class="gallery-img" alt="Tech Expo" title="Tech Expo"></td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Registration Form -->
+    <section>
+      <h2>Register for an Event</h2>
+      <form onsubmit="showConfirmation(event)">
+        <label>Name: <input type="text" name="name" placeholder="Your name" required autofocus></label><br><br>
+        <label>Email: <input type="email" name="email" placeholder="you@example.com" required></label><br><br>
+        <label>Phone: <input type="text" id="phone" onblur="validatePhone(this)"></label><br><br>
+        <label>Date: <input type="date" name="eventDate" required></label><br><br>
+        <label>Event Type: 
+          <select id="eventType" onchange="displayFee(this.value)">
+            <option value="">--Select--</option>
+            <option value="Music">Music</option>
+            <option value="Art">Art</option>
+            <option value="Tech">Tech</option>
+          </select>
+        </label><br><br>
+        <label>Message: <textarea id="feedback" rows="4" cols="30" onkeyup="countChars()"></textarea></label><br>
+        <span id="charCount">0 characters</span><br><br>
+        <button type="submit" onclick="return confirm('Are you sure?')">Submit</button>
+        <output id="formOutput"></output>
+      </form>
+    </section>
+
+    <!-- Video Section -->
+    <section>
+     <!--<h2>Event Promo</h2>
+      <video id="promoVideo" width="320" controls oncanplay="videoReady()">
+        <source src="event_promo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p id="videoStatus"></p>--> 
+      <iframe 
+  width="560" 
+  height="315" 
+  src="https://www.youtube.com/embed/GSENAaAu8QQ?si=Ts8oy374VP963QBF" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+    </section>
+
+    <!-- Geolocation -->
+    <section>
+      <h2>Find Nearby Events</h2>
+      <button onclick="getLocation()">Find Nearby Events</button>
+      <p id="geoOutput"></p>
+    </section>
+
+    <!-- Preferences -->
+    <section>
+      <h2>Your Preferences</h2>
+      <button onclick="savePreference()">Save Preferred Event Type</button>
+      <button onclick="clearPreferences()">Clear Preferences</button>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: info@communityevents.org</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Local Community Council</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
